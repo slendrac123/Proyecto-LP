@@ -3,6 +3,7 @@ prog:   (parallel_process NEWLINE)* ;
 
 parallel_process: process 
                 | process '|' parallel_process
+                | '(' parallel_process ')'
                 ;
 
 process: action
