@@ -7,11 +7,21 @@ parallel_process: process
 
 process: action
        | prefix_process
+       | new_channel_process
+       | conditional_process
        | '(' process ')'
        | NULL_PROCESS
        ;
 
 prefix_process: action '.' process ;
+
+new_channel_process: '(' 'ν' identifier ')' process ;
+
+conditional_process: 'if' expression 'then' process
+                   | 'if' expression 'then' process 'else' process 
+                   ;
+
+expression: identifier '=' identifier ;
 
 action: send_action
       | receive_action
