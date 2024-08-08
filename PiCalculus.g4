@@ -6,8 +6,12 @@ parallel_process: process
                 ;
 
 process: action
+       | prefix_process
        | '(' process ')'
+       | NULL_PROCESS
        ;
+
+prefix_process: action '.' process ;
 
 action: send_action
       | receive_action
@@ -19,6 +23,8 @@ receive_action: identifier '(' identifier ')' ;
 print_action: 'print' '(' STRING ')' ;
 
 identifier: ID ;
+
+NULL_PROCESS: '0';
 
 STRING: '"' [a-zA-Z0-9_ ]* '"'
       | '\'' [a-zA-Z0-9_ ]* '\''
